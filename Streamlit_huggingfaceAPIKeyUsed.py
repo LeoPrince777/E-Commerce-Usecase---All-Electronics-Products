@@ -39,12 +39,12 @@ if uploaded_file:
                 # Prepare the context for the model (convert JSON data to string format)
                 context = json.dumps(data)
 
-                # Hugging Face API request
+                # Hugging Face API request part
                 headers = {
                     "Authorization": f"Bearer {api_key}",
                     "Content-Type": "application/json"
                 }
-                # Payload for Hugging Face Inference API
+                # Payload for Hugging Face Inference API part
                 payload = {
                     "inputs": {
                         "question": user_question,
@@ -59,13 +59,12 @@ if uploaded_file:
                     json=payload
                 )
 
-                # Handle the response from Hugging Face
+                # response from Hugging Face
                 if response.status_code == 200:
                     result = response.json()
                     answer = result.get("answer", "No answer found.")
                     #score = result.get("score", 0)
                     
-                    # Display the answer
                     st.write(f"**Answer:** {answer}")
                     #st.write(f"**Confidence Score:** {score:.2f}")
                 else:
